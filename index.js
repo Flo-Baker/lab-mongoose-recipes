@@ -32,6 +32,10 @@ mongoose
     response.forEach(eachRecipe => {
       console.log(eachRecipe.title)
     })
+    return RecipeModel.findOneAndUpdate ( { title: "Rigatoni alla Genovese" }, { duration: 100 }, {new: true} )
+  })
+  .then(() => {
+    console.log("updated duration of Rigatoni alla Genovese")
   })
   // return RecipeModel.create( { title: "", level: "", ingredients: "", cuisine: "", dishType: "", image: "", duration: 21, creator: "", created: 2021-07-31  } )
   .then(response => {
