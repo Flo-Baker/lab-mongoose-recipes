@@ -10,7 +10,7 @@ const recipeSchema = new Schema({
     },
     level: {
       type: String,
-      enum: "Easy Peasy"
+      enum: ["Easy Peasy", "Amateur Chef", "UltraPro Chef"]
     }, 
     ingredients: [{
       type: String 
@@ -21,11 +21,11 @@ const recipeSchema = new Schema({
     }, 
     dishType: {
       type: String,
-      enum: "main_course"
+      enum: ["breakfast, "main_course", "soup", "snack", "drink", "dessert"]
     },
-    imnage: {
+    image: {
       type: String,
-      enum: "https://images.media-allrecipes.com/images/75131.jpg"
+      default: "https://images.media-allrecipes.com/images/75131.jpg"
     }, 
     duration: {
       type: Number
@@ -35,7 +35,7 @@ const recipeSchema = new Schema({
     }, 
     created: {
       type: Date,
-      enum: 2021-07-31
+      default: "2021-07-31"
     }
 });
 
