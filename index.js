@@ -15,16 +15,28 @@ mongoose
     useUnifiedTopology: true
   })
   .then(self => {
-    console.log(`Connected to the database: "${self.connection.name}"`);
+    console.log(`1. Connected to the database: "${self.connection.name}"`);
     // Before adding any recipes to the database, let's remove all existing ones
+    // return mongoose.connection.dropDatabase();
     return RecipeModel.deleteMany()
-  })
-  .then(() => {
-    console.log("title")
-    // Run your code here, after you have insured that the connection was made
-    return RecipeModel.create( { title: "", level: "", ingredients: "", cuisine: "", dishType: "", image: "", duration: 21, creator: "", created: 2021-07-31  } )
 
   })
-  .catch(error => {
+  .then(() => {
+    console.log("2. Database cleared")
+    return RecipeModel.insertMany( data )
+    // Run your code here, after you have insured that the connection was made
+  })
+  .then(response => {
+    console.log("3. inserted recipe data", response)
+    // forEach.data.title
+    response.forEach(eachRecipe => {
+      console.log(eachRecipe.title)
+    })
+  })
+  // return RecipeModel.create( { title: "", level: "", ingredients: "", cuisine: "", dishType: "", image: "", duration: 21, creator: "", created: 2021-07-31  } )
+  .then(response => {
+    console.log("recipe created", response)
+  })
+    .catch(error => {
     console.error('Error connecting to the database', error);
   });
