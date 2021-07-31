@@ -28,7 +28,8 @@ const recipeSchema = new Schema({
       default: "https://images.media-allrecipes.com/images/75131.jpg"
     }, 
     duration: {
-      type: Number
+      type: Number,
+      min: 0
     }, 
     creator: {
       type: String
