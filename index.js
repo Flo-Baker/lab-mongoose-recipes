@@ -7,6 +7,7 @@ const data = require("./data");
 
 const MONGODB_URI = 'mongodb://localhost:27017/recipe-app';
 
+
 // Connection to the database "recipe-app"
 mongoose
   .connect(MONGODB_URI, {
@@ -35,12 +36,26 @@ mongoose
     return RecipeModel.findOneAndUpdate ( { title: "Rigatoni alla Genovese" }, { duration: 100 }, {new: true} )
   })
   .then(() => {
-    console.log("updated duration of Rigatoni alla Genovese")
+    console.log("4. updated duration of Rigatoni alla Genovese")
+
+    return RecipeModel.deleteOne ( { title: "Carrot Cake" } )
+  })
+  .then( (recipeModel) => {
+    console.log("5. deleted Carrot Cake")
   })
   // return RecipeModel.create( { title: "", level: "", ingredients: "", cuisine: "", dishType: "", image: "", duration: 21, creator: "", created: 2021-07-31  } )
-  .then(response => {
+  /*.then(response => {
     console.log("recipe created", response)
   })
-    .catch(error => {
+  */  
+ .catch(error => {
     console.error('Error connecting to the database', error);
   });
+
+  mongoose.connection.close()
+  .then(res => {
+    console.log("Connection closed");
+  })
+  .catch(err => {
+    console.log(err);
+  })
